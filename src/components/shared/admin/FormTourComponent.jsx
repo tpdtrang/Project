@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-var dateFormat = require('dateformat');
 
-class FormHbComponent extends Component {
-  constructor(props, context) {
-    super(props, context);
+class FormTourComponent extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       id: '',
       title: '',
-      description: '',
-      date: '',
-      images: ''
+      time: '',
+      transport: '',
+      price: '',
+      image: ''
     }
   }
   onChanger = (event) => {
@@ -27,46 +27,52 @@ class FormHbComponent extends Component {
     }
 
   }
-  componentDidUpdate(prevProps, prevState) {
+  componentDidUpdate(prevProps) {
     if (prevProps.dataEdit !== this.props.dataEdit && this.props.dataEdit !== {}) {
       this.setState({
         id: this.props.dataEdit.id,
         title: this.props.dataEdit.title,
-        description: this.props.dataEdit.description,
-        date: dateFormat(this.props.dataEdit.datam, 'yyyy-mm-dd'),
-        images: this.props.dateEdit.images
+        time: this.props.dataEdit.time,
+        transport: this.props.dataEdit.transport,
+        price: this.props.dataEdit.price,
+        image: this.props.dataEdit.image
       })
     }
   }
   render() {
     return (
-      <section className="wrap-formhb">
+      <section className="wrap-formcontact">
         <div className="row">
           <div className="col-lg-12">
-            <h3 className="heading-3"> Form Handbook</h3>
+            <h3 className="heading-3"> Form Tours</h3>
             <ol className="breadcrumb">
               <li className="item-title"><i className="fa fa-home" /><Link to="/admin">Home</Link></li>
               <li className="item-title"><i className="icon_document_alt" />Forms</li>
-              <li className="item-title"><i className="fa fa-file-text-o" />Form Handbook</li>
+              <li className="item-title"><i className="fa fa-file-text-o" />Form Tours</li>
             </ol>
           </div>
         </div>
+
         <form className="navbar-form pull-right" onSubmit={this.onSubmit}>
           <label >Title:</label>
           <br />
           <input type="text" style={{ width: '60%' }} name="title" onChange={this.onChanger} value={this.state.title} />
           <br />
-          <label >Description:</label>
+          <label >Time:</label>
           <br />
-          <input type="text" style={{ width: '60%' }} name="description" onChange={this.onChanger} value={this.state.description} />
+          <input type="text" style={{ width: '60%' }} name="time" onChange={this.onChanger} value={this.state.time} />
           <br />
-          <label >Date:</label>
+          <label >Transport:</label>
           <br />
-          <input type="date" style={{ width: '60%' }} name="date" onChange={this.onChanger} value={this.state.date} />
+          <input type="text" style={{ width: '60%' }} name="transport" onChange={this.onChanger} value={this.state.transport} />
           <br />
-          <label >Images:</label>
+          <label >Price:</label>
           <br />
-          <input type="text" style={{ width: '60%' }} name="images" onChange={this.onChanger} value={this.state.images} />
+          <input type="text" style={{ width: '60%' }} name="price" onChange={this.onChanger} value={this.state.price} />
+          <br />
+          <label >Image:</label>
+          <br />
+          <input type="text" style={{ width: '60%' }} name="image" onChange={this.onChanger} value={this.state.image} />
           <br />
           <button type="submit" className="btn btn-primary">Save</button>
         </form>
@@ -75,4 +81,4 @@ class FormHbComponent extends Component {
   }
 }
 
-export default FormHbComponent;
+export default FormTourComponent;

@@ -1,35 +1,34 @@
 import React, { Component } from 'react';
 import { AdminLayout, HeaderAdLayout } from '../../layouts';
-import FormHbComponent from '../../shared/admin/FormHbComponent';
+import FormTourComponent from '../../shared/admin/FormTourComponent';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
-class FormHbPage extends Component {
-  constructor(props, context) {
-    super(props, context);
+class FormTourPage extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       dataEdit: {},
       edit: false,
       status: false
     }
   }
-
   onAdd = (data) => {
     var self = this;
-
     axios.request({
       method: 'POST',
-      url: 'http://localhost:3000/products',
+      url: 'http://localhost:3000/tours',
       headers: {
         'Content-Type': 'application/json'
       },
       data: {
         'title': data.title,
-        'description': data.description,
-        'date': data.date,
-        'images': data.images
+        'time': data.time,
+        'transport': data.transport,
+        'price': data.price,
+        'image': data.image
       }
-    }).then(function (response) {
+    }).then(function (respnse) {
       self.setState({
         status: true
       })
@@ -39,36 +38,37 @@ class FormHbPage extends Component {
     var self = this;
     axios.request({
       method: 'PUT',
-      url: `http://localhost:3000/products/${data.id}`,
+      url: `http://localhost:3000/tours/${data.id}`,
       headers: {
         'Content-Type': 'application/json'
       },
       data: {
         'title': data.title,
-        'description': data.description,
-        'date': data.date,
-        'images': data.images
+        'time': data.time,
+        'transport': data.transport,
+        'price': data.price,
+        'image': data.images
       }
     }).then(function (response) {
       self.setState({
         status: true
       })
     })
-
   }
   componentDidMount() {
-    if (this.props.match.params.hb !== undefined) {
-      this.onGetData(this.props.match.params.hb);
+    if (this.props.match.params.tour !== undefined) {
+      this.onGetData(this.props.match.params.tour);
     }
   }
+
   onGetData(id) {
     var self = this;
     axios.request({
       method: 'GET',
-      url: `http://localhost:3000/products/${id}`,
+      url: `http://localhost:3000/tours/${id}`,
       headers: {
         'Content-Type': 'application/json'
-      },
+      }
     }).then(function (response) {
       self.setState({
         dataEdit: response.data,
@@ -79,18 +79,19 @@ class FormHbPage extends Component {
   render() {
     if (this.state.status) {
       return (
-        <Redirect to="/tablehb"></Redirect>
+        <Redirect to="/tabletour"></Redirect>
       )
     }
     return (
       <div>
         <HeaderAdLayout></HeaderAdLayout>
         <AdminLayout></AdminLayout>
-        <FormHbComponent onAdd={this.onAdd} dataEdit={this.state.dataEdit} edit={this.state.edit} onUpdate={this.onUpdate}></FormHbComponent>
+        <FormTourComponent onAdd={this.onAdd} dataEdit={this.state.dataEdit} edit={this.state.edit} onUpdate={this.onUpdate}></FormTourComponent>
+
 
       </div>
     );
   }
 }
 
-export default FormHbPage;
+export default FormTourPage;

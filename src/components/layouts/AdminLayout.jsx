@@ -4,12 +4,9 @@ class AdminLayout extends Component {
     render() {
         return (
             <section className="home-container">
-                {/* <div class="p-logo">
-        <h1 class="heading-1">ADMIN</h1>
-        </div> */}
                 <div className="home-menu">
                     <ul className="p-menu">
-                        <li className="item menu-main"><Link to="/admin" className="link-menu active"><i className="fas fa-home" />Dashboard</Link>
+                        <li className="item menu-main"><Link to="/" className="link-menu active"><i className="fas fa-home" />Dashboard</Link>
                         </li>
                         <li className="item menu-main"><Link to="/" className="link-menu"><i className="far fa-edit" />Forms<span className="p-icon" /></Link>
                             <ul className="p-drop">
@@ -17,10 +14,10 @@ class AdminLayout extends Component {
                     Handbook</Link></li>
                                 <li className="item menu-drop"><Link to="/formroom" className="link-menu link-drop">Form Rooms</Link>
                                 </li>
-                                <li className="item menu-drop"><Link to="/formhbbd" className="link-menu link-drop">Form
-                    HandbookBody</Link></li>
-                                <li className="item menu-drop"><Link to="./formcontact" className="link-menu link-drop">Form
-                    Contact</Link></li>
+                                <li className="item menu-drop"><Link to="/formtour" className="link-menu link-drop">Form
+                    Tours</Link></li>
+                                <li className="item menu-drop"><Link to="./formnew" className="link-menu link-drop">Form
+                    News</Link></li>
                             </ul>
                         </li>
                         <li className="item menu-main"><Link to="/" className="link-menu"><i className="fas fa-table" />Tables<span className="p-icon" /></Link >
@@ -29,8 +26,8 @@ class AdminLayout extends Component {
                                 </li>
                                 <li className="item menu-drop"><Link to="./tableroom" className="link-menu link-drop">Table Rooms</Link >
                                 </li>
-                                <li className="item menu-drop"><Link to="./tablecontact" className="link-menu link-drop">Table
-                    Contact</Link ></li>
+                                <li className="item menu-drop"><Link to="./tabletour" className="link-menu link-drop">Table Tours</Link ></li>
+                    <li className="item menu-drop"><Link to="./tablenew" className="link-menu link-drop">Table News</Link ></li>
                             </ul>
                         </li>
                         <li className="item menu-main"><Link to="/" className="link-menu"><i className="fab fa-react" />Pages<span className="p-icon" /></Link >

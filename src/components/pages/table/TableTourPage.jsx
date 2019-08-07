@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { AdminLayout, HeaderAdLayout } from '../../layouts';
-import TableRoomComponent from '../../shared/table/TableRoomComponent';
+import TableTourComponent from '../../shared/table/TableTourComponent';
 import axios from 'axios';
-class TableRoomPage extends Component {
+class TableTourPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       data: []
     }
-
   }
   componentDidMount() {
     this.requestLoadData();
@@ -16,16 +15,16 @@ class TableRoomPage extends Component {
   onDelete = (id) => {
     var self = this;
     axios.request({
-      method: "DELETE",
-      url: `http://localhost:3000/room/${id}`,
+      method: "Delete",
+      url: `http://localhost:3000/tours/${id}`,
       headers: {
         "Content-Type": "application/json"
       }
     }).then(function (response) {
       axios.request({
         method: "GET",
-        url: "http://localhost:3000/room",
-        headers: {
+        url: "http://localhost:3000/tours",
+        header: {
           "Content-Type": "application/json"
         }
       }).then(function (response) {
@@ -39,7 +38,7 @@ class TableRoomPage extends Component {
     var self = this;
     axios.request({
       method: "GET",
-      url: "http://localhost:3000/room",
+      url: "http://localhost:3000/tours",
       headers: {
         "Content-Type": "application/json"
       }
@@ -54,10 +53,11 @@ class TableRoomPage extends Component {
       <div>
         <HeaderAdLayout></HeaderAdLayout>
         <AdminLayout></AdminLayout>
-        <TableRoomComponent data={this.state.data} onDelete={this.onDelete}></TableRoomComponent>
+        <TableTourComponent data={this.state.data} onDelete={this.onDelete}></TableTourComponent>
+
       </div>
     );
   }
 }
 
-export default TableRoomPage;
+export default TableTourPage;

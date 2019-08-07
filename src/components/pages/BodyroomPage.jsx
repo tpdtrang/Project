@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { HeaderLayout, FooterLayout } from '../layouts';
-import { BanernewComponent, ChoosenewComponent } from '../shared';
+import BodyroomComponent from '../../components/shared/rooms/BodyroomComponent';
+import BanerRoomComponent from '../../components/shared/rooms/BanerRoomComponent';
 import axios from 'axios';
 
-class NewPage extends Component {
+class BodyroomPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -14,14 +15,10 @@ class NewPage extends Component {
     var self = this;
     axios.request({
       method: "GET",
-      url: "http://localhost:3000/news",
-      headers: {
-        "Content-Type": "application/json"
-      }
-
+      url: `http://localhost:3000/roomct?room=${this.props.match.params.id}`
     }).then(function (response) {
       self.setState({
-        data: response.data
+        data: response.data[0]
       })
     })
   }
@@ -29,12 +26,12 @@ class NewPage extends Component {
     return (
       <div>
         <HeaderLayout></HeaderLayout>
-        <BanernewComponent></BanernewComponent>
-        <ChoosenewComponent data={this.state.data}></ChoosenewComponent>
+        <BanerRoomComponent></BanerRoomComponent>
+        <BodyroomComponent data={this.state.data}></BodyroomComponent>
         <FooterLayout></FooterLayout>
       </div>
     );
   }
 }
 
-export default NewPage;
+export default BodyroomPage;

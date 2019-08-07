@@ -11,5 +11,7 @@ import ContactPage from './ContactPage';
 import AdminPage from './AdminPage';
 import LoginPage from './LoginPage';
 import SignupPage from './SignupPage';
-export {HomePage, HandbookPage,RoomPage,FormContactPage,FormHbPage,FormRoomPage,TableRoomPage,TableContactPage,
-    TableHbPage,ContactPage,AdminPage,LoginPage,SignupPage} ;
+export {
+	HomePage, HandbookPage, RoomPage, FormContactPage, FormHbPage, FormRoomPage, TableRoomPage, TableContactPage,
+	TableHbPage, ContactPage, AdminPage, LoginPage, SignupPage
+};

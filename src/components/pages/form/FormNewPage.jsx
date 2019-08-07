@@ -1,34 +1,33 @@
 import React, { Component } from 'react';
-import { AdminLayout, HeaderAdLayout } from '../../layouts';
-import FormHbComponent from '../../shared/admin/FormHbComponent';
+import { HeaderAdLayout, AdminLayout } from '../../layouts';
+import FormnewComponent from '../../shared/admin/FormnewComponent';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
-class FormHbPage extends Component {
-  constructor(props, context) {
-    super(props, context);
+class FormNewPage extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
       dataEdit: {},
       edit: false,
       status: false
     }
   }
-
   onAdd = (data) => {
     var self = this;
-
     axios.request({
       method: 'POST',
-      url: 'http://localhost:3000/products',
+      url: 'http://localhost:3000/news',
       headers: {
         'Content-Type': 'application/json'
       },
       data: {
-        'title': data.title,
-        'description': data.description,
-        'date': data.date,
-        'images': data.images
+        title: data.title,
+        description: data.description,
+        date: data.date,
+        image: data.image
       }
+
     }).then(function (response) {
       self.setState({
         status: true
@@ -39,7 +38,7 @@ class FormHbPage extends Component {
     var self = this;
     axios.request({
       method: 'PUT',
-      url: `http://localhost:3000/products/${data.id}`,
+      url: `http://localhost:3000/news/${data.id}`,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -47,25 +46,24 @@ class FormHbPage extends Component {
         'title': data.title,
         'description': data.description,
         'date': data.date,
-        'images': data.images
+        'image': data.image
       }
     }).then(function (response) {
       self.setState({
         status: true
       })
     })
-
   }
   componentDidMount() {
-    if (this.props.match.params.hb !== undefined) {
-      this.onGetData(this.props.match.params.hb);
+    if (this.props.match.params.new !== undefined) {
+      this.onGetData(this.props.match.params.new)
     }
   }
   onGetData(id) {
     var self = this;
     axios.request({
       method: 'GET',
-      url: `http://localhost:3000/products/${id}`,
+      url: `http://localhost:3000/news/${id}`,
       headers: {
         'Content-Type': 'application/json'
       },
@@ -76,21 +74,21 @@ class FormHbPage extends Component {
       })
     })
   }
+
   render() {
     if (this.state.status) {
       return (
-        <Redirect to="/tablehb"></Redirect>
+        <Redirect to="/tablenew"></Redirect>
       )
     }
     return (
       <div>
         <HeaderAdLayout></HeaderAdLayout>
         <AdminLayout></AdminLayout>
-        <FormHbComponent onAdd={this.onAdd} dataEdit={this.state.dataEdit} edit={this.state.edit} onUpdate={this.onUpdate}></FormHbComponent>
-
+        <FormnewComponent onAdd={this.onAdd} dataEdit={this.state.dataEdit} edit={this.state.edit} onUpdate={this.onUpdate}></FormnewComponent>
       </div>
     );
   }
 }
 
-export default FormHbPage;
+export default FormNewPage;
